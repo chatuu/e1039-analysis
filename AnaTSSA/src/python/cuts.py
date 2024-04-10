@@ -2,11 +2,20 @@ from headers import *
 from functions import *
 
 def e906_data_cuts(tree: uproot.models.TTree.Model_TTree_v19, etype) -> uproot.models.TTree.Model_TTree_v19:
+    """
+    This is the first event selection applied.
+
+    Args:
+        tree (uproot.models.TTree.Model_TTree_v19): TTree created with uproot
+        etype (str): event type: {data, Jpsi, Drell-Yan, Psi Prime}
+
+    Returns:
+        uproot.models.TTree.Model_TTree_v19: TTree compatible with uproot after applying event selection.
+    """             
     
     beam_offset = GetBeamOffSet(tree, etype)
     branch = tree.keys()
     events = tree.arrays(branch)
-    runID  = events.runID
 
     dimuon_cut_2111_v42 = (
         (np.abs(events.dx) < 0.25) &
