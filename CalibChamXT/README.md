@@ -69,12 +69,11 @@ You then execute the following commands to process all events/runs.
 The `-g` option is to run jobs on the grid.
 
 ```
-source /exp/seaquest/app/software/script/setup-jobsub-spinquest.sh
 kinit
 ./run_reco.sh -g GO
 ```
 
-You use `jobsub_q_mine` (or `./check_job.sh`) to wait until all grid jobs finish.
+You use `jobsub_q --group spinquest --user=$USER` (or `./check_job.sh`) to wait until all grid jobs finish.
 
 ```
 ~kenichi/bin/hadddraw -o hist_raw data/main/run_*/out/output_*.root
@@ -93,7 +92,7 @@ cd work
 
 This script executes an Fun4All macro (`Fun4AllAna.C`), which makes use of a SubsysReco modle (`src/SRMakeRTCurve`) to analyze `DSTreco.root`.
 
-Note that `make_rt.sh` has two commented-out lines that find ana analyze the evaluation file (`eval.root`) using a ROOT macro (`AnaRTCurve.C`).
+Note that `make_rt.sh` has two commented-out lines that find and analyze the evaluation file (`eval.root`) using a ROOT macro (`AnaRTCurve.C`).
 This part is kept for backward compatibility for now, but probably be deleted soon.
 
 
